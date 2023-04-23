@@ -44,11 +44,11 @@ class PreProcessing:
 
 
             # Load squat_down.csv and drop column by index
-            df1 = pd.read_csv(f"{self.bootstrap_csvs_out_folder}/{csv_files[0]}", header=None)
+            df1 = pd.read_csv(f"{self.bootstrap_csvs_out_folder}/{csv_file_names[0]}", header=None)
             df1 = df1.drop(df1.columns[0], axis=1)
 
             # Load squat_up.csv and drop column by index
-            df2 = pd.read_csv(f"{self.bootstrap_csvs_out_folder}/{csv_files[0]}", header=None)
+            df2 = pd.read_csv(f"{self.bootstrap_csvs_out_folder}/{csv_file_names[1]}", header=None)
             df2 = df2.drop(df2.columns[0], axis=1)
 
             # Add new column to each dataframe with output values
