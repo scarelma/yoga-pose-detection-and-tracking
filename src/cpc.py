@@ -28,7 +28,7 @@ class CustomPoseClassification:
 
         # Split the dataset into training and testing sets
         X_train, X_test, y_train, y_test = train_test_split(self.df.iloc[:, :-1], self.df.iloc[:, -1], test_size=self._testsize, random_state=self._random_state)
-        self.model = SVC(kernel='linear', C=1)
+        self.model = SVC(kernel='rbf', C=1)
         self.model.fit(X_train, y_train)
         
         # Evaluate the model on the testing set

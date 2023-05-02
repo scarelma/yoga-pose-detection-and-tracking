@@ -149,3 +149,11 @@ def main():
 
 if __name__=="__main__":
     main()
+# from src.prep import PreProcessing
+# from src.cpc import CustomPoseClassification
+# pre = PreProcessing(bootstrap_images_in_zip="testing_data/pushups.zip")
+# df = pre.apply()
+# exercise_name = "pushups"
+# CPC = CustomPoseClassification(df=df, posename=exercise_name)
+# CPC.loadOrTrain()
+

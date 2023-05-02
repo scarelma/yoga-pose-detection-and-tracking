@@ -50,9 +50,9 @@ class BootstrapHelper(object):
     # Create output folder for CVSs.
     if not os.path.exists(self._csvs_out_folder):
       os.makedirs(self._csvs_out_folder)
-
+    print(self._pose_class_names)
     for pose_class_name in self._pose_class_names:
-      print('Bootstrapping ', pose_class_name, file=sys.stderr)
+      print(f'Bootstrapping {pose_class_name}')
 
       # Paths for the pose class.
       images_in_folder = os.path.join(self._images_in_folder, pose_class_name)
@@ -69,8 +69,10 @@ class BootstrapHelper(object):
           image_names = image_names[:per_pose_class_limit]
 
         # Bootstrap every image.
-        for image_name in tqdm.tqdm(image_names):
+        # count = 0
+        for image_name in image_names:
           # Load image.
+
           input_frame = cv2.imread(os.path.join(images_in_folder, image_name))
           input_frame = cv2.cvtColor(input_frame, cv2.COLOR_BGR2RGB)
 
