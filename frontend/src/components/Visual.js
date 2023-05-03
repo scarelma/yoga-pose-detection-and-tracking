@@ -1,8 +1,24 @@
+import React, { useState, useEffect } from "react"
+
+import { authFetch } from "./auth/index"
+
 export const Visual = () => {
+    const [message, setMessage] = useState('')
+
+    useEffect(() => {
+        authFetch("/api/protected").then(response => {
+            if (response.status === 401) {
+                setMessage("Sorry you aren't authorized!")
+                return null
+            }
+            return response.json()
+        }).then(response => {
+            if (response && response.message) {
+                setMessage(response.message)
+            }
+        })
+    }, [])
     return (
-        <div>
-            <h1>Visual</h1>
-            <p>Welcome to the visual page!</p>
-        </div>
-    );
+        <h2>Secret: {message}</h2>
+    )
 }

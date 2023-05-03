@@ -1,9 +1,12 @@
 import { useState } from "react"
 
-export const Login = () => {
+import { login, useAuth, logout } from "./auth/index"
 
+export const Login = () => {
     const [username, setUsername] = useState('')
     const [password, setPassword] = useState('')
+
+    const [logged] = useAuth();
 
     const onSubmitClick = (e) => {
         e.preventDefault()
@@ -19,6 +22,7 @@ export const Login = () => {
         }).then(r => r.json())
             .then(token => {
                 if (token.access_token) {
+                    login(token)
                     console.log(token)
                 }
                 else {
@@ -38,7 +42,7 @@ export const Login = () => {
     return (
         <div>
             <h2>Login</h2>
-            <form action="#">
+            {!logged ? <form action="#">
                 <div>
                     <input type="text"
                         placeholder="Username"
@@ -58,6 +62,7 @@ export const Login = () => {
                     Login Now
                 </button>
             </form>
+                : <button onClick={() => logout()}>Logout</button>}
         </div>
-    );
+    )
 }

@@ -1,6 +1,6 @@
 import os
 import flask
-from flask import Flask
+from flask import Flask, send_from_directory
 import flask_sqlalchemy
 import flask_praetorian
 import flask_cors
@@ -17,6 +17,7 @@ class User(db.Model):
     password = db.Column(db.Text)
     roles = db.Column(db.Text)
     is_active = db.Column(db.Boolean, default=True, server_default='true')
+    
 
     @property
     def rolenames(self):
@@ -131,5 +132,6 @@ def protected():
     return {'message': f'protected endpoint (allowed user {flask_praetorian.current_user().username})'}
 
 
+
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=4001, debug=True, threaded=True)
+    app.run(host='0.0.0.0', port=3000, debug=True, threaded=True)
